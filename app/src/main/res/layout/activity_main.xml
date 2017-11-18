@@ -22,12 +22,28 @@
 
     <include layout="@layout/content_main" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/create_an_event_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-
+        android:layout_marginTop="175dp"
+        android:text="@string/create_event"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/ongoing_event_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:text="@string/ongoing_events"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/past_event_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="325dp"
+        android:text="@string/past_events"
+        android:textStyle="bold" />
 </android.support.design.widget.CoordinatorLayout>
