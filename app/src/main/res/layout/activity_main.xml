@@ -46,4 +46,5 @@
         android:layout_marginTop="350dp"
         android:text="@string/past_events"
         android:textStyle="bold" />
+
 </android.support.design.widget.CoordinatorLayout>

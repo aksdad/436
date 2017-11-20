@@ -27,6 +27,18 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".CreateEvent"
+            android:label="Feed The Kitty"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".OngoingEvents"
+            android:label="Feed The Kitty"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".PastEvents"
+            android:label="Feed The Kitty"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
