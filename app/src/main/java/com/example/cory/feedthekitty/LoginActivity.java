@@ -33,7 +33,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -54,7 +53,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world", "cory@gmail.com:hello"
     };
-
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */

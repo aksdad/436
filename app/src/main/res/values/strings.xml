@@ -10,16 +10,14 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-
-    <string name="create_event">Create an Event</string>
-    <string name="ongoing_events">Ongoing Events</string>
-    <string name="past_events">Past Events</string>
-
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="create_event">Create Event</string>
+    <string name="ongoing_events">Ongoing Events</string>
+    <string name="past_events">Past Events</string>
+
+
     <string name="title_activity_main">Feed The Kitty</string>
-    <string name="title_activity_create_event">CreateEvent</string>
-    <string name="title_activity_ongoing_events">OngoingEvents</string>
-    <string name="title_activity_past_events">PastEvents</string>
 </resources>

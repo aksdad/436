@@ -26,18 +26,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".CreateEvent"
-            android:label="@string/title_activity_create_event"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".OngoingEvents"
-            android:label="@string/title_activity_ongoing_events"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".PastEvents"
-            android:label="@string/title_activity_past_events"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

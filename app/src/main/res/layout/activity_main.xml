@@ -23,11 +23,11 @@
     <include layout="@layout/content_main" />
 
     <Button
-        android:id="@+id/create_an_event_button"
+        android:id="@+id/create_event_button"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="200dp"
         android:text="@string/create_event"
         android:textStyle="bold" />
     <Button
@@ -35,7 +35,7 @@
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="275dp"
         android:text="@string/ongoing_events"
         android:textStyle="bold" />
     <Button
@@ -43,7 +43,7 @@
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="325dp"
+        android:layout_marginTop="350dp"
         android:text="@string/past_events"
         android:textStyle="bold" />
 </android.support.design.widget.CoordinatorLayout>
