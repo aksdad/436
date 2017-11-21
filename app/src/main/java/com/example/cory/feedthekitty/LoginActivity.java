@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -85,10 +86,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        //mEmailSignInButton.setBackgroundColor(0xFF1D1A70);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        //TODO facebook login
+        Button mFacebookSignInButton = (Button) findViewById(R.id.facebook_login);
+        //mFacebookSignInButton.setBackgroundColor(0xFF1D1A70);
+        mFacebookSignInButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "FUNCTIONALITY TO BE IMPLEMENTED", Toast.LENGTH_SHORT).show();
+                return;
             }
         });
 
