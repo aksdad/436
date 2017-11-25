@@ -6,7 +6,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CreateEvent extends AppCompatActivity {
@@ -18,13 +22,14 @@ public class CreateEvent extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        Button createEvent = (Button) findViewById(R.id.create_event_button);
-//        createEvent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getBaseContext(), "OK THIS BUTTON WORKS", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        RelativeLayout layout = new RelativeLayout(getApplicationContext());
+        TextView tv=(TextView)findViewById(R.id.textView1);
+        tv.setText("HELLO TEST");
+
+        if(tv.getParent()!=null)
+            ((ViewGroup)tv.getParent()).removeView(tv); // <- fix
+        layout.addView(tv);
+
     }
 
 }
