@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cory.feedthekitty.TestActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/pageHeader"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:text="Create An Event"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        android:textSize="36sp"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioButton
+        android:id="@+id/private_event"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
+        android:text="Private Event"
+        android:layout_marginEnd="68dp"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="73dp"
+        app:layout_constraintRight_toRightOf="@+id/remove_expenses"
+        app:layout_constraintBaseline_toBaselineOf="@+id/public_event"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/add_expense" />
+
+    <RadioButton
+        android:id="@+id/public_event"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
+        android:text="Public Event"
+        android:layout_marginStart="77dp"
+        android:layout_marginEnd="73dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/add_expense"
+        app:layout_constraintRight_toRightOf="@+id/add_expense"
+        android:layout_marginTop="27dp"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintLeft_toLeftOf="@+id/expenses" />
+
+    <EditText
+        android:id="@+id/event_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="My Event"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/pageHeader"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/public_event" />
+
+    <TextView
+        android:id="@+id/expenses"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Expenses"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toLeftOf="@+id/add_expense"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/remove_expenses"
+        android:layout_marginTop="7dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/remove_expenses" />
+
+    <Button
+        android:id="@+id/add_expense"
+        android:layout_width="107dp"
+        android:layout_height="48dp"
+        android:text="Add Expense"
+        android:textSize="10sp"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/soon_to_be_grid"
+        app:layout_constraintBaseline_toBaselineOf="@+id/expenses"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/soon_to_be_grid" />
+
+    <Button
+        android:id="@+id/remove_expenses"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Remove Expense"
+        android:textSize="10sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="16dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintLeft_toRightOf="@+id/add_expense" />
+
+    <TextView
+        android:id="@+id/soon_to_be_grid"
+        android:layout_width="227dp"
+        android:layout_height="122dp"
+        android:text="i dont know how to do the expense list "
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_red_dark"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/submit"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="61dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="57dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/remove_expenses" />
+
+</android.support.constraint.ConstraintLayout>
