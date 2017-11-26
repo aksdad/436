@@ -20,16 +20,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main"
+        android:id="@+id/include" />
 
-    <Button
-        android:id="@+id/create_event_button"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="@string/create_event"
-        android:textStyle="bold" />
     <Button
         android:id="@+id/ongoing_event_button"
         style="?android:textAppearanceSmall"
@@ -45,6 +38,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="350dp"
         android:text="@string/past_events"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/create_event_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="@string/create_event"
         android:textStyle="bold" />
 
 </android.support.design.widget.CoordinatorLayout>

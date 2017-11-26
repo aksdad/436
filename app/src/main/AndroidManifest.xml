@@ -35,7 +35,8 @@
             android:name=".PastEvents"
             android:label="Feed The Kitty"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".MainMenu"></activity>
     </application>
 
 </manifest>
