@@ -24,10 +24,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".OngoingEvents"
             android:label="Feed The Kitty"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -36,7 +32,8 @@
             android:label="Feed The Kitty"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".MainMenu"></activity>
+        <activity android:name=".MainMenu" />
+        <activity android:name=".BasicLogin"></activity>
     </application>
 
 </manifest>
