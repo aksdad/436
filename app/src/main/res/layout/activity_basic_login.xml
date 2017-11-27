@@ -107,18 +107,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline5"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7"
-        tools:layout_editor_absoluteY="358dp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintGuide_percent="0.64" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline7"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3"
-        tools:layout_editor_absoluteY="154dp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintGuide_percent="0.24" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -173,7 +169,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline8"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8"
+        app:layout_constraintGuide_percent="0.74"
         tools:layout_editor_absoluteY="409dp"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -182,9 +178,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline9"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9"
-        tools:layout_editor_absoluteY="460dp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintGuide_percent="0.84" />
 
     <EditText
         android:id="@+id/password"
