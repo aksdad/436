@@ -13,16 +13,17 @@
         android:layout_width="231dp"
         android:layout_height="0dp"
         android:text="Create event"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintHorizontal_bias="0.503"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6" />
 
     <TextView
         android:id="@+id/pageHeader"
-        android:layout_width="366dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
         android:text="Create An Event"
         android:textAlignment="center"
@@ -37,7 +38,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <EditText
         android:id="@+id/event_name"
@@ -46,15 +49,13 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="My Event"
-        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/pageHeader"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="@+id/pageHeader"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintHorizontal_bias="0.496"
         android:layout_marginTop="41dp"
-        app:layout_constraintTop_toBottomOf="@+id/pageHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/pageHeader"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <TextView
         android:id="@+id/expenses"
@@ -70,7 +71,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="36dp"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <Button
         android:id="@+id/add_expense"
@@ -84,7 +89,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/radioGroup"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="@+id/radioGroup"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <Button
         android:id="@+id/remove_expenses"
@@ -98,42 +107,28 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="21dp"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintHorizontal_bias="0.0" />
-
-    <TextView
-        android:id="@+id/soon_to_be_grid"
-        android:layout_width="227dp"
-        android:layout_height="122dp"
-        android:text="i dont know how to do the expense list "
-        android:textStyle="bold"
-        android:textColor="@android:color/holo_red_dark"
-        android:textAlignment="center"
-        android:gravity="center_vertical"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/add_expense"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/add_expense"
-        android:layout_marginRight="0dp"
-        app:layout_constraintRight_toRightOf="@+id/add_expense"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintVertical_bias="0.695" />
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <RadioGroup
-        android:layout_width="139dp"
+        android:layout_width="0dp"
         android:layout_height="66dp"
         android:orientation="vertical"
         android:id="@+id/radioGroup"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
         app:layout_constraintLeft_toLeftOf="@+id/event_name"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="38dp"
         app:layout_constraintRight_toRightOf="@+id/event_name"
         android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@+id/event_name"
         app:layout_constraintHorizontal_bias="0.062"
-        android:layout_marginEnd="8dp">
+        android:layout_marginEnd="38dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1">
 
         <RadioButton
             android:id="@+id/public_event"
@@ -152,5 +147,28 @@
             tools:layout_editor_absoluteY="178dp" />
 
     </RadioGroup>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="296dp"
+        android:layout_height="130dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintLeft_toLeftOf="@+id/submit"
+        app:layout_constraintRight_toRightOf="@+id/submit"
+        app:layout_constraintTop_toBottomOf="@+id/add_expense"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline6"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
 
 </android.support.constraint.ConstraintLayout>

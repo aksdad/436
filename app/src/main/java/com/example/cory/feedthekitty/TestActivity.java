@@ -1,5 +1,7 @@
 package com.example.cory.feedthekitty;
 
+import android.app.ListActivity;
+import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +40,7 @@ public class TestActivity extends AppCompatActivity {
         mAddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                addNewExpense();
                 Toast.makeText(getBaseContext(), "ADD EXPENSE", Toast.LENGTH_SHORT).show();
             }
         });
@@ -56,12 +59,23 @@ public class TestActivity extends AppCompatActivity {
                 if ((RadioButton)findViewById(selected) == mPrivateEvent){
                     Toast.makeText(getBaseContext(), mPrivateEvent.getText(), Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else if ((RadioButton)findViewById(selected) == mPublicEvent){
                     Toast.makeText(getBaseContext(), mPublicEvent.getText(), Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getBaseContext(), "Neither button clicked.", Toast.LENGTH_SHORT).show();
                 }
                 //Toast.makeText(getBaseContext(), mEventName.getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+
+
+    private void addNewExpense(){
+        Intent intent = new Intent(TestActivity.this, AddExpense.class);
+        startActivity(intent);
+
+        finish();
     }
 }

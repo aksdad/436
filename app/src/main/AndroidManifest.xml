@@ -31,9 +31,12 @@
             android:name=".PastEvents"
             android:label="Feed The Kitty"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TestActivity" />
+        <activity
+            android:name=".TestActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".MainMenu" />
-        <activity android:name=".BasicLogin"></activity>
+        <activity android:name=".BasicLogin" />
+        <activity android:name=".AddExpense"></activity>
     </application>
 
 </manifest>

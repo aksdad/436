@@ -19,6 +19,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenu.this, TestActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -28,6 +29,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenu.this, OngoingEvents.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -37,6 +39,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenu.this, PastEvents.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
