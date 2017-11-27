@@ -33,10 +33,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TestActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:launchMode="singleTop"/>
         <activity android:name=".MainMenu" />
         <activity android:name=".BasicLogin" />
-        <activity android:name=".AddExpense"></activity>
+        <activity android:name=".AddExpense"
+            android:parentActivityName=".TestActivity"></activity>
     </application>
 
 </manifest>
