@@ -26,17 +26,20 @@
         <activity
             android:name=".OngoingEvents"
             android:label="Feed The Kitty"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainMenu"/>
         <activity
             android:name=".PastEvents"
             android:label="Feed The Kitty"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainMenu"/>
         <activity
             android:name=".TestActivity"
             android:windowSoftInputMode="adjustPan"
-            android:launchMode="singleTop"/>
-        <activity android:name=".MainMenu" />
-        <activity android:name=".BasicLogin" />
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainMenu"/>
+        <activity android:name=".MainMenu"
+            android:parentActivityName=".LoginActivity"/>
         <activity android:name=".AddExpense"
             android:parentActivityName=".TestActivity"></activity>
     </application>

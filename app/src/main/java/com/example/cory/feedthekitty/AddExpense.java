@@ -42,7 +42,7 @@ public class AddExpense extends AppCompatActivity {
             public void onClick(View view) {
                 hold += 1;
                 mMoneySum.setText(""+hold+".00");
-                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -51,7 +51,7 @@ public class AddExpense extends AppCompatActivity {
             public void onClick(View view) {
                 hold += 50;
                 mMoneySum.setText(""+hold+".00");
-                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -60,7 +60,7 @@ public class AddExpense extends AppCompatActivity {
             public void onClick(View view) {
                 hold += 10;
                 mMoneySum.setText(""+hold+".00");
-                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -69,7 +69,7 @@ public class AddExpense extends AppCompatActivity {
             public void onClick(View view) {
                 hold += 5;
                 mMoneySum.setText(""+hold+".00");
-                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -78,7 +78,7 @@ public class AddExpense extends AppCompatActivity {
             public void onClick(View view) {
                 hold = 0;
                 mMoneySum.setText(""+hold+".00");
-                Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), hold+"", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -87,8 +87,17 @@ public class AddExpense extends AppCompatActivity {
             public void onClick(View view) {
                 // get name of event + cost and add it to ListView in TestActivity.
                 Toast.makeText(getBaseContext(), "Expense recorded!", Toast.LENGTH_SHORT).show();
-                finish();
+                submitClick();
             }
         });
+    }
+
+    private void submitClick(){
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("name", mExpenseName.getText().toString());
+        Toast.makeText(getBaseContext(), mExpenseName.getText(), Toast.LENGTH_SHORT).show();
+        returnIntent.putExtra("price", hold+"");
+        setResult(RESULT_OK,returnIntent);
+        this.finish();
     }
 }

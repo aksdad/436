@@ -1,16 +1,24 @@
 package com.example.cory.feedthekitty;
 
 import android.app.ListActivity;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -23,6 +31,9 @@ public class TestActivity extends AppCompatActivity {
     EditText mEventName;
     Button mAddExpense, mRemoveExpense, mSubmitEvent;
     RadioButton mPrivateEvent, mPublicEvent;
+    ListView mExpenseList;
+    ArrayList<String> mListItems = new ArrayList<String>();
+    ArrayAdapter<String> mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +46,20 @@ public class TestActivity extends AppCompatActivity {
         mSubmitEvent = (Button) findViewById(R.id.submit);
         mPrivateEvent = (RadioButton) findViewById(R.id.private_event);
         mPublicEvent = (RadioButton) findViewById(R.id.public_event);
+        mExpenseList = (ListView) findViewById(R.id.listView);
+        mAdapter=new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                mListItems);
+        mExpenseList.setAdapter(mAdapter);
+
+
 
         //set listeners
         mAddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addNewExpense();
-                Toast.makeText(getBaseContext(), "ADD EXPENSE", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "ADD EXPENSE", Toast.LENGTH_SHORT).show();
             }
         });
         mRemoveExpense.setOnClickListener(new View.OnClickListener() {
@@ -68,14 +86,44 @@ public class TestActivity extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(), mEventName.getText(), Toast.LENGTH_SHORT).show();
             }
         });
-
+        mExpenseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Toast.makeText(getBaseContext(), "WORKS", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-
+    //todo create backstack to retrieve info from expense form
     private void addNewExpense(){
-        Intent intent = new Intent(TestActivity.this, AddExpense.class);
-        startActivity(intent);
+        Intent intent = new Intent(this.getApplicationContext(), AddExpense.class);
 
-        finish();
+//        TaskStackBuilder tsb = TaskStackBuilder.create(this);
+//        tsb.addParentStack(AddExpense.class);
+//        tsb.addNextIntent(intent);
+//        PendingIntent thingy = tsb.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+//        builder.setContentIntent(thingy);
+        startActivityForResult(intent, 666);
+
+        //finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (RESULT_OK == resultCode){
+            if (data == null){
+                Toast.makeText(getBaseContext(), "return intent null", Toast.LENGTH_SHORT).show();
+            }
+            else {
+
+                //get expense info from intent
+                String expenseName = data.getStringExtra("name");
+                Toast.makeText(getBaseContext(), "return intent not null", Toast.LENGTH_SHORT).show();
+                mListItems.add(data.getStringExtra("name") + ":" +"\t$"+data.getStringExtra("price"));
+                mAdapter.notifyDataSetChanged();
+            }
+        }
     }
 }
