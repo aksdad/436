@@ -16,7 +16,11 @@
         android:orientation="horizontal"
         tools:layout_editor_absoluteY="50dp"
         tools:layout_editor_absoluteX="0dp" />
-
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
     <Button
         android:id="@+id/recover_password"
         android:layout_width="0dp"
