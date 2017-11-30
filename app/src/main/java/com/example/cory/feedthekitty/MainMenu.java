@@ -3,6 +3,7 @@ package com.example.cory.feedthekitty;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,6 +13,9 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        mToolbar.setTitle("Main Menu");
 
         Button createEvent = (Button) findViewById(R.id.create_event_button);
         createEvent.setOnClickListener(new View.OnClickListener() {

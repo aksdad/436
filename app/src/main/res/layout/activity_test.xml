@@ -8,6 +8,11 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        ></include>
+
     <Button
         android:id="@+id/submit"
         android:layout_width="231dp"
