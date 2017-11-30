@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
@@ -19,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -86,6 +88,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_login);
+
+
 
         //Get firebase instance
         mAuth = FirebaseAuth.getInstance();
@@ -230,8 +234,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 //        updateUI(currentUser);
-        if(currentUser == null){
-
+        if(currentUser != null){
+            Intent intent = new Intent(LoginActivity.this, MainMenu.class);
+            startActivity(intent);
         }
     }
 
