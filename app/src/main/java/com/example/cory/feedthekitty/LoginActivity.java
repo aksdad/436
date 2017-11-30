@@ -354,6 +354,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void attemptSignup() {
+//        Intent intent = new Intent(LoginActivity.this, CreateAccount.class);
+//        startActivity(intent);
         if (mAuthTask != null) {
             return;
         }

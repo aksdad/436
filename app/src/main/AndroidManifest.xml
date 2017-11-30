@@ -43,22 +43,25 @@
         <activity
             android:name=".OngoingEvents"
             android:label="Feed The Kitty"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainMenu"/>
+            android:parentActivityName=".MainMenu"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PastEvents"
             android:label="Feed The Kitty"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainMenu"/>
+            android:parentActivityName=".MainMenu"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TestActivity"
-            android:windowSoftInputMode="adjustPan"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainMenu"/>
-        <activity android:name=".MainMenu"
-            android:parentActivityName=".LoginActivity"/>
-        <activity android:name=".AddExpense"
-            android:parentActivityName=".TestActivity"></activity>
+            android:parentActivityName=".MainMenu"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".MainMenu"
+            android:parentActivityName=".LoginActivity" />
+        <activity
+            android:name=".AddExpense"
+            android:parentActivityName=".TestActivity" />
+        <activity android:name=".CreateAccount"></activity>
     </application>
 
 </manifest>
