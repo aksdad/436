@@ -1,5 +1,6 @@
 package com.example.cory.feedthekitty;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class CreateAccount extends AppCompatActivity {
 
@@ -47,6 +49,7 @@ public class CreateAccount extends AppCompatActivity {
         mPassword = (EditText) findViewById(R.id.enter_password_field);
 
         mSubmitButton = (Button) findViewById(R.id.submit_create_account);
+
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +105,11 @@ public class CreateAccount extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 //Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(CreateAccount.this, "Thanks for signing up, " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(mDisplayName.getText().toString()).build();
+                                user.updateProfile(profileUpdates);
+                                Toast.makeText(CreateAccount.this, "Thanks for signing up, " + mDisplayName.getText().toString(), Toast.LENGTH_SHORT).show();
+
                                 CreateAccount.this.finish();
                             } else {
                                 Toast.makeText(CreateAccount.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
