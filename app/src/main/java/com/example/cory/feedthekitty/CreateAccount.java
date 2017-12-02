@@ -103,7 +103,7 @@ public class CreateAccount extends AppCompatActivity {
                                 //Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(CreateAccount.this, "Thanks for signing up, " + user.getEmail(), Toast.LENGTH_SHORT).show();
-
+                                CreateAccount.this.finish();
                             } else {
                                 Toast.makeText(CreateAccount.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                                 focusEmail();
@@ -112,7 +112,6 @@ public class CreateAccount extends AppCompatActivity {
                     });
                 }
                 //end onClick
-                finish();
             }
             //end setOnCLickListener
         });
