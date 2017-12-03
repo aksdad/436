@@ -148,13 +148,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * Set up the {@link android.app.ActionBar}, if the API is available.
      */
     private void setupActionBar() {
-        getLayoutInflater().inflate(R.layout.tool_bar, (ViewGroup) findViewById(android.R.id.content));
-        LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
-        Toolbar mToolbar
-                = (Toolbar) LayoutInflater.from(this).inflate(R.layout.tool_bar, root, false);
-        root.addView(mToolbar, 0);
-        mToolbar.setTitle(R.string.settings_name);
-        setSupportActionBar(mToolbar);
+//        Toolbar mToolbar
+//                = (Toolbar)getLayoutInflater().inflate(R.layout.tool_bar, (ViewGroup) findViewById(android.R.id.content));
+//        LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
+////        Toolbar mToolbar
+////                = (Toolbar) LayoutInflater.from(this).inflate(R.layout.tool_bar, root, false);
+//        root.addView(mToolbar, 0);
+//        mToolbar.setTitle(R.string.settings_name);
+//        setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             // Show the Up button in the action bar.
@@ -291,5 +292,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        LinearLayout root = (LinearLayout)findViewById(android.R.id.list).getParent().getParent().getParent();
+        Toolbar bar = (Toolbar)LayoutInflater.from(this).inflate(R.layout.tool_bar, root, false);
+        bar.setTitle(R.string.settings_name);
+        setSupportActionBar(bar);
+        ActionBar mActionBar = getSupportActionBar();
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+        root.addView(bar, 0); // insert at top]
     }
 }
