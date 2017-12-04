@@ -21,10 +21,16 @@ import android.widget.Toast;
 import com.google.android.gms.identity.intents.model.UserAddress;
 import com.google.android.gms.wallet.CardInfo;
 import com.google.android.gms.wallet.PaymentData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.stripe.android.model.Token;
 import com.stripe.android.view.CardInputWidget;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -40,10 +46,13 @@ public class TestActivity extends AppCompatActivity {
     ListView mExpenseList;
     ArrayList<String> mListItems = new ArrayList<String>();
     ArrayAdapter<String> mAdapter;
+    DatabaseReference mDatabase;
+    HashMap<String, Integer> expenses;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mToolbar.setTitle("Create an Event");
         // get views
@@ -59,7 +68,7 @@ public class TestActivity extends AppCompatActivity {
                 mListItems);
         mExpenseList.setAdapter(mAdapter);
 
-
+        expenses = new HashMap<String, Integer>();
 
         //set listeners
         mAddExpense.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +100,7 @@ public class TestActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Neither button clicked.", Toast.LENGTH_SHORT).show();
                 }
                 //Toast.makeText(getBaseContext(), mEventName.getText(), Toast.LENGTH_SHORT).show();
+                processEvent();
             }
         });
         mExpenseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -102,6 +112,29 @@ public class TestActivity extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(R.id.tool_bar));
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setDisplayHomeAsUpEnabled(true);
+
+    }
+
+    private void processEvent() {
+        String key = mDatabase.child("events").push().getKey();
+        String uid = FirebaseAuth.getInstance().getUid();
+        boolean visibility = false;
+        RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup);
+        int selected = rg.getCheckedRadioButtonId();
+
+        if ((RadioButton)findViewById(selected) == mPrivateEvent){
+            Toast.makeText(getBaseContext(), mPrivateEvent.getText(), Toast.LENGTH_SHORT).show();
+            visibility = true;
+        }
+        Event event = new Event(key, "", ((EditText) findViewById(R.id.event_name)).getText().toString(), uid, visibility, ServerValue.TIMESTAMP, null, expenses);
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/events/" + key, event);
+        childUpdates.put("/user-events/"+ uid + "/" + key, event);
+
+        mDatabase.updateChildren(childUpdates);
+
+        TestActivity.this.finish();
+        Toast.makeText(getBaseContext(), "Event recorded into database.", Toast.LENGTH_SHORT).show();
     }
 
     //todo create backstack to retrieve info from expense form
@@ -149,6 +182,7 @@ public class TestActivity extends AppCompatActivity {
 
                 //get expense info from intent
                 String expenseName = data.getStringExtra("name");
+                expenses.put(expenseName, Integer.parseInt(data.getStringExtra("price")));
                 Toast.makeText(getBaseContext(), "return intent not null", Toast.LENGTH_SHORT).show();
                 mListItems.add(data.getStringExtra("name") + ":" +"\t$"+data.getStringExtra("price"));
                 mAdapter.notifyDataSetChanged();

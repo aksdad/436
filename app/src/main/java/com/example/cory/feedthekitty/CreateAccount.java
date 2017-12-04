@@ -17,12 +17,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateAccount extends AppCompatActivity {
 
     EditText mDisplayName, mEmailAddress, mPassword;
     Button mSubmitButton;
     private FirebaseAuth mAuth;
+    DatabaseReference mDatabase;
+// ...
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
@@ -38,6 +42,13 @@ public class CreateAccount extends AppCompatActivity {
         //TODO: Replace this with your own logic
         return email.contains("@");
     }
+
+    private void writeNewUser(String userId, String name, String email) {
+        User user = new User(name, email);
+
+        mDatabase.child("users").child(userId).setValue(user);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,6 +61,7 @@ public class CreateAccount extends AppCompatActivity {
 
         mSubmitButton = (Button) findViewById(R.id.submit_create_account);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +121,8 @@ public class CreateAccount extends AppCompatActivity {
                                         .setDisplayName(mDisplayName.getText().toString()).build();
                                 user.updateProfile(profileUpdates);
                                 Toast.makeText(CreateAccount.this, "Thanks for signing up, " + mDisplayName.getText().toString(), Toast.LENGTH_SHORT).show();
-
+                                String uid = user.getUid();
+                                writeNewUser(uid, mDisplayName.getText().toString(), CreateAccount.this.mEmailAddress.getText().toString());
                                 CreateAccount.this.finish();
                             } else {
                                 Toast.makeText(CreateAccount.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();

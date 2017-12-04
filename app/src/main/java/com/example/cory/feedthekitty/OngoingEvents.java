@@ -7,8 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class OngoingEvents extends AppCompatActivity {
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+
+public class OngoingEvents extends AppCompatActivity {
+    DatabaseReference mDatabase;
+    DatabaseReference mEvents;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +30,11 @@ public class OngoingEvents extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
+//        mEvents = mDatabase.child("events");
+//
+//        ValueEventListener
     }
 
 }

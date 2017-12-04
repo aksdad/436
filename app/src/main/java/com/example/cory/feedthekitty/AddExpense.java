@@ -106,11 +106,17 @@ public class AddExpense extends AppCompatActivity {
             public void onClick(View view) {
                 // get name of event + cost and add it to ListView in TestActivity.
                 Toast.makeText(getBaseContext(), "Expense recorded!", Toast.LENGTH_SHORT).show();
-                PaymentDataRequest request = createPaymentDataRequest();
-                if (request != null) {
-                    AutoResolveHelper.resolveTask(mPaymentsClient.loadPaymentData(request), AddExpense.this, LOAD_PAYMENT_DATA_REQUEST_CODE);
-                }
-                submitClick();
+//                PaymentDataRequest request = createPaymentDataRequest();
+//                if (request != null) {
+//                    AutoResolveHelper.resolveTask(mPaymentsClient.loadPaymentData(request), AddExpense.this, LOAD_PAYMENT_DATA_REQUEST_CODE);
+//                }
+//                submitClick();
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("name", mExpenseName.getText().toString());
+                Toast.makeText(getBaseContext(), mExpenseName.getText(), Toast.LENGTH_SHORT).show();
+                returnIntent.putExtra("price", hold+"");
+                setResult(RESULT_OK,returnIntent);
+                AddExpense.this.finish();
             }
         });
     }
