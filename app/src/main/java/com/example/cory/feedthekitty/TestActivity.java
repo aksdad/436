@@ -1,9 +1,11 @@
 package com.example.cory.feedthekitty;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -89,6 +91,9 @@ public class TestActivity extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(), "WORKS", Toast.LENGTH_SHORT).show();
             }
         });
+        setSupportActionBar((Toolbar) findViewById(R.id.tool_bar));
+        ActionBar mActionBar = getSupportActionBar();
+        mActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     //todo create backstack to retrieve info from expense form
@@ -104,6 +109,16 @@ public class TestActivity extends AppCompatActivity {
         startActivityForResult(intent, 666);
 
         //finish();
+    }
+
+    @Override
+    public void onBackPressed(){
+        Log.d("TestActivity", "We going to the main menu");
+        Intent mIntent = new Intent(TestActivity.this, MainMenu.class);
+//        mIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(mIntent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
     }
 
     @Override

@@ -29,7 +29,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenu.this, TestActivity.class);
                 startActivity(intent);
-                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -67,6 +67,7 @@ public class MainMenu extends AppCompatActivity {
             case R.id.settings:
                 Intent intent = new Intent(MainMenu.this, SettingsActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
 
             default:
