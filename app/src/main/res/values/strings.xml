@@ -102,6 +102,6 @@
 
     <!-- New Main Menu Strings -->
     <string name="header_my_events">My Events</string>
-    <string name="header_ongoing_events">Ongoing Events</string>
+    <string name="header_ongoing_events">Ongoing</string>
     <string name="header_past_events">Past Events</string>
 </resources>
