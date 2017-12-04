@@ -1,6 +1,7 @@
 package com.example.cory.feedthekitty;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -188,7 +189,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || UserPreferenceFragment.class.getName().equals(fragmentName)
                 || DataSyncPreferenceFragment.class.getName().equals(fragmentName)
-                || NotificationPreferenceFragment.class.getName().equals(fragmentName);
+                || NotificationPreferenceFragment.class.getName().equals(fragmentName)
+                || CreditCardPreferenceFragment.class.getName().equals(fragmentName);
     }
 
     /**
@@ -292,6 +294,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class CreditCardPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            Intent i = new Intent(getActivity(), CreditCardActivity.class);
+            startActivityForResult(i, Activity.RESULT_OK);
+            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
+            // to their values. When their values change, their summaries are
+            // updated to reflect the new value, per the Android Design
+            // guidelines.
+        }
+
     }
 
     @Override

@@ -17,4 +17,9 @@
         android:icon="@drawable/ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
 
+    <header
+        android:fragment="com.example.cory.feedthekitty.SettingsActivity$CreditCardPreferenceFragment"
+        android:icon="@drawable/ic_action_name"
+        android:title="@string/pref_header_credit_card"
+        />
 </preference-headers>
