@@ -2,6 +2,8 @@ package com.example.cory.feedthekitty;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
+import android.media.session.MediaSession;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,12 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.google.android.gms.identity.intents.model.UserAddress;
+import com.google.android.gms.wallet.CardInfo;
+import com.google.android.gms.wallet.PaymentData;
+import com.stripe.android.model.Token;
+import com.stripe.android.view.CardInputWidget;
 
 import java.util.ArrayList;
 
@@ -125,6 +133,15 @@ public class TestActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if (RESULT_OK == resultCode){
+            if (requestCode == 0) {
+                PaymentData paymentData = PaymentData.getFromIntent(data);
+                CardInfo info = paymentData.getCardInfo();
+                UserAddress address = paymentData.getShippingAddress();
+                String rawToken = paymentData.getPaymentMethodToken().getToken();
+                Token stripeToken = Token.fromString(rawToken);
+
+
+            }
             if (data == null){
                 Toast.makeText(getBaseContext(), "return intent null", Toast.LENGTH_SHORT).show();
             }
