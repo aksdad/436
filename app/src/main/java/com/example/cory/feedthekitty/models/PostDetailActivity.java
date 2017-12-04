@@ -55,7 +55,10 @@ public class PostDetailActivity extends AppCompatActivity {
                 //launch individual activity to contribute to this expense
                 Intent intent = new Intent(PostDetailActivity.this, ContributeToExpense.class);
                 String expense = (String)adapterView.getItemAtPosition(i);
-                intent.putExtra("info", expense);
+                String[] hold = expense.split("\\s+");
+                hold[0] = hold[0].substring(0, hold[0].length()-1);
+                intent.putExtra("expense_name", hold[0]);
+                intent.putExtra("expense_price", hold[1]);
                 startActivity(intent);
             }
         });
