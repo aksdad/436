@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cory.feedthekitty.EventViewHolder;
 import com.example.cory.feedthekitty.R;
 import com.example.cory.feedthekitty.models.Event;
+import com.example.cory.feedthekitty.models.PostDetailActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -92,9 +94,9 @@ public abstract class EventListFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         // Launch PostDetailActivity
-//                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-//                        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
-//                        startActivity(intent);
+                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
+                        intent.putExtra("PostKey", postKey);
+                        startActivityForResult(intent, 1738);
                     }
                 });
 
@@ -110,6 +112,7 @@ public abstract class EventListFragment extends Fragment {
             }
         };
         mRecycler.setAdapter(mAdapter);
+
     }
 
     // [START post_stars_transaction]
@@ -171,4 +174,10 @@ public abstract class EventListFragment extends Fragment {
 
     public abstract Query getQuery(DatabaseReference databaseReference);
 
+
+    //TODO
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

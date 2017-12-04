@@ -139,7 +139,6 @@ public class TestActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Event recorded into database.", Toast.LENGTH_SHORT).show();
     }
 
-    //todo create backstack to retrieve info from expense form
     private void addNewExpense(){
         Intent intent = new Intent(this.getApplicationContext(), AddExpense.class);
 
@@ -150,8 +149,6 @@ public class TestActivity extends AppCompatActivity {
 //        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 //        builder.setContentIntent(thingy);
         startActivityForResult(intent, 666);
-
-        //finish();
     }
 
     @Override
