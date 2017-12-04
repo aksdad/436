@@ -66,6 +66,7 @@
             android:name=".AddExpense"
             android:parentActivityName=".TestActivity" />
         <activity android:name=".CreateAccount" />
+
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -74,6 +75,15 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainMenu"/>
         </activity>>
+
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+
+        <activity android:name=".CreditCardActivity">
+
+        </activity>
     </application>
 
 </manifest>
