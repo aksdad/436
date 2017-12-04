@@ -57,11 +57,11 @@
         <activity
             android:name=".TestActivity"
             android:parentActivityName=".MainMenu"
-            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"
-        >
-        <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainMenu"/>
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainMenu" />
         </activity>
         <activity
             android:name=".MainMenu"
@@ -70,25 +70,23 @@
             android:name=".AddExpense"
             android:parentActivityName=".TestActivity" />
         <activity android:name=".CreateAccount" />
-
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainMenu"
             android:theme="@style/AppTheme.NoActionBar">
-
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainMenu"/>
-        </activity>>
-
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainMenu" />
+        </activity>
+        >
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
 
-
-        <activity android:name=".CreditCardActivity">
-
-        </activity>
+        <activity android:name=".CreditCardActivity" />
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

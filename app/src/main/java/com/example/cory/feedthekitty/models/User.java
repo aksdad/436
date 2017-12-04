@@ -1,4 +1,4 @@
-package com.example.cory.feedthekitty;
+package com.example.cory.feedthekitty.models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

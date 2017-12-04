@@ -2,8 +2,6 @@ package com.example.cory.feedthekitty;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.media.session.MediaSession;
-import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.cory.feedthekitty.models.Event;
 import com.google.android.gms.identity.intents.model.UserAddress;
 import com.google.android.gms.wallet.CardInfo;
 import com.google.android.gms.wallet.PaymentData;
@@ -26,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.stripe.android.model.Token;
-import com.stripe.android.view.CardInputWidget;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -118,6 +116,7 @@ public class TestActivity extends AppCompatActivity {
     private void processEvent() {
         String key = mDatabase.child("events").push().getKey();
         String uid = FirebaseAuth.getInstance().getUid();
+        String owner_name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         boolean visibility = false;
         RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup);
         int selected = rg.getCheckedRadioButtonId();
@@ -126,7 +125,10 @@ public class TestActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), mPrivateEvent.getText(), Toast.LENGTH_SHORT).show();
             visibility = true;
         }
-        Event event = new Event(key, "", ((EditText) findViewById(R.id.event_name)).getText().toString(), uid, visibility, ServerValue.TIMESTAMP, null, expenses);
+
+
+
+        Event event = new Event(key, "", ((EditText) findViewById(R.id.event_name)).getText().toString(), uid, visibility, null, expenses, owner_name);
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/events/" + key, event);
         childUpdates.put("/user-events/"+ uid + "/" + key, event);
@@ -155,9 +157,9 @@ public class TestActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         Log.d("TestActivity", "We going to the main menu");
-        Intent mIntent = new Intent(TestActivity.this, MainMenu.class);
+//        Intent mIntent = new Intent(TestActivity.this, MainMenu.class);
 //        mIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(mIntent);
+//        startActivity(mIntent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }

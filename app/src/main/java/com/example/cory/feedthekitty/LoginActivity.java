@@ -204,7 +204,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(LoginActivity.this, "Welcome fbuser " + user.getDisplayName() + "!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainMenu.class);
+//                            Intent intent = new Intent(LoginActivity.this, MainMenu.class);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
 //                            updateUI(user);
                         } else {
@@ -235,7 +236,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         FirebaseUser currentUser = mAuth.getCurrentUser();
 //        updateUI(currentUser);
         if(currentUser != null){
-            Intent intent = new Intent(LoginActivity.this, MainMenu.class);
+            //Intent intent = new Intent(LoginActivity.this, MainMenu.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }
