@@ -57,6 +57,7 @@ public class PostDetailActivity extends AppCompatActivity {
                 String expense = (String)adapterView.getItemAtPosition(i);
                 String[] hold = expense.split("\\s+");
                 hold[0] = hold[0].substring(0, hold[0].length()-1);
+                hold[1] = hold[1].substring(1, hold[1].length());
                 intent.putExtra("expense_name", hold[0]);
                 intent.putExtra("expense_price", hold[1]);
                 startActivity(intent);
