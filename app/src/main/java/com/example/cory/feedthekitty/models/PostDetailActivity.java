@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class PostDetailActivity extends AppCompatActivity {
 
 
-    TextView mTitleName, mOwnerName;
+    TextView mTitleName, mOwnerName, mTime, mDate;
     DatabaseReference mEvent;
     ValueEventListener mPostListener;
     ArrayList<String> mListItems = new ArrayList<String>();
@@ -42,6 +42,8 @@ public class PostDetailActivity extends AppCompatActivity {
 
         mTitleName = findViewById(R.id.post_detail_title_name);
         mOwnerName = findViewById(R.id.post_detail_owner_name);
+        mTime = findViewById(R.id.post_detail_time);
+        mDate = findViewById(R.id.post_detail_date);
         mExpenseList = (ListView) findViewById(R.id.post_detail_list_view);
 
         mAdapter=new ArrayAdapter<String>(this,
@@ -86,7 +88,7 @@ public class PostDetailActivity extends AppCompatActivity {
                         mAdapter.notifyDataSetChanged();
                     }
                 }
-
+                //mDate = event.getTimestamp();
 
                 // [END_EXCLUDE]
             }
