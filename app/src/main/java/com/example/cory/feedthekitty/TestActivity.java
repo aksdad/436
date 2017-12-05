@@ -59,6 +59,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
     ArrayList<String> mListItems = new ArrayList<String>();
     ArrayAdapter<String> mAdapter;
     DatabaseReference mDatabase;
+    Date date;
     HashMap<String, Integer> expenses;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -261,11 +262,9 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
-
             // Create a new instance of DatePickerDialog and return it
             return new DatePickerDialog(mActivity, mListener, year, month, day);
         }
-
 
     }
 
@@ -282,6 +281,12 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
         Calendar c = new GregorianCalendar(myear, mmonth, mday, mhour, mminute);
         mTime = c.getTimeInMillis();
         Toast.makeText(this, String.valueOf(mTime), Toast.LENGTH_SHORT).show();
+
+        //public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
+
+
+        //}
     }
 
     public static class TimePickerFragment extends DialogFragment
