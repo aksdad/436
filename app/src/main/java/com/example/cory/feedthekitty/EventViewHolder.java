@@ -12,7 +12,7 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
     public TextView titleView;
     public TextView authorView;
     public ImageView starView;
-    public TextView numStarsView;
+    public TextView numPeople;
     public TextView bodyView;
 //    public ImageView owner_photo;
 
@@ -21,16 +21,14 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
 
         titleView = itemView.findViewById(R.id.event_name);
         authorView = itemView.findViewById(R.id.event_owner);
-        starView = itemView.findViewById(R.id.star);
-        numStarsView = itemView.findViewById(R.id.post_num_stars);
+        numPeople = itemView.findViewById(R.id.event_people_count);
         bodyView = itemView.findViewById(R.id.event_body);
-//        owner_photo = itemView.findViewById(R.id.owner_photo);
     }
 
     public void bindToEvent(Event event) {
         titleView.setText(event.name);
         authorView.setText(event.owner_name);
-        numStarsView.setText(String.valueOf(5));
+        numPeople.setText(String.valueOf(event.size));
 
 //        bodyView.setText(post.body);
 

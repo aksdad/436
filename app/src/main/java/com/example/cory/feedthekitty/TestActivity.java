@@ -39,6 +39,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class TestActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
@@ -52,17 +53,20 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
     EditText mEventName;
     Button mAddExpense, mRemoveExpense, mSubmitEvent, mDatePicker, mTimePicker, mInvite;
     int myear, mmonth, mday, mhour, mminute;
+    HashSet<String> users;
     long mTime;
     RadioButton mPrivateEvent, mPublicEvent;
     ListView mExpenseList;
     ArrayList<String> mListItems = new ArrayList<String>();
     ArrayAdapter<String> mAdapter;
     DatabaseReference mDatabase;
+    Date date;
     HashMap<String, Integer> expenses;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        users = null;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mToolbar.setTitle("Create an Event");
@@ -164,9 +168,17 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
 
 
         Event event = new Event(key, "", ((EditText) findViewById(R.id.event_name)).getText().toString(), uid, visibility, null, expenses, owner_name, mTime);
+        event.size = 1;
         Map<String, Object> childUpdates = new HashMap<>();
+        if(users != null){
+            event.size += users.size();
+            for(String u : users){
+                childUpdates.put("/user-events/" + u + "/" + key, event);
+            }
+        }
         childUpdates.put("/events/" + key, event);
         childUpdates.put("/user-events/"+ uid + "/" + key, event);
+
 
         mDatabase.updateChildren(childUpdates);
 
@@ -207,6 +219,15 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
                 }
                 mAdapter.notifyDataSetChanged();
                 //Toast.makeText(this.getApplicationContext(), mListItems.size()+"", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if (requestCode == 888){
+            if (resultCode == RESULT_OK){
+
+                users = (HashSet<String>) data.getSerializableExtra("invited");
+//                for (String i : stuff){
+//                    Toast.makeText(getBaseContext(), ""+i, Toast.LENGTH_SHORT).show();
+//                }
             }
         }
         else if (RESULT_OK == resultCode){
@@ -251,11 +272,9 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
-
             // Create a new instance of DatePickerDialog and return it
             return new DatePickerDialog(mActivity, mListener, year, month, day);
         }
-
 
     }
 
@@ -272,6 +291,12 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
         Calendar c = new GregorianCalendar(myear, mmonth, mday, mhour, mminute);
         mTime = c.getTimeInMillis();
         Toast.makeText(this, String.valueOf(mTime), Toast.LENGTH_SHORT).show();
+
+        //public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
+
+
+        //}
     }
 
     public static class TimePickerFragment extends DialogFragment

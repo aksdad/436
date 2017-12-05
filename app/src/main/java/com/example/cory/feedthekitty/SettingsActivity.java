@@ -137,6 +137,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 //        getListView().setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
         setupActionBar();
     }
+    @Override
+    public void onBackPressed(){
+        SettingsActivity.this.finish();
+    }
 
     /**
      * Set up the {@link android.app.ActionBar}, if the API is available.

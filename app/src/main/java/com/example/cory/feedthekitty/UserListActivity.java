@@ -82,7 +82,7 @@ public class UserListActivity extends BaseActivity {
             }
 
             @Override
-            protected void onBindViewHolder(UserViewHolder viewHolder, int position, final User model) {
+            protected void onBindViewHolder(final UserViewHolder viewHolder, int position, final User model) {
                 final DatabaseReference userRef = getRef(position);
 
                 // Set click listener for the whole post view
@@ -98,6 +98,8 @@ public class UserListActivity extends BaseActivity {
                     @Override
                     public void onClick(View view){
                         store.add(postKey);
+                        viewHolder.inviteButton.setText("Invited");
+                        viewHolder.inviteButton.setEnabled(false);
 //                        Toast.makeText(UserListActivity.this, "Added " + postKey, Toast.LENGTH_LONG).show();
                     }
                 });
@@ -127,10 +129,11 @@ public class UserListActivity extends BaseActivity {
         return databaseReference.child("users");
     };
 
-
-    //TODO
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onBackPressed(){
+        Intent intent = new Intent();
+        intent.putExtra("invited", store);
+        setResult(RESULT_OK, intent);
+        UserListActivity.this.finish();
     }
 }
