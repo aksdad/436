@@ -127,10 +127,11 @@ public class UserListActivity extends BaseActivity {
         return databaseReference.child("users");
     };
 
-
-    //TODO
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onBackPressed(){
+        Intent intent = new Intent();
+        intent.putExtra("invited", store);
+        setResult(RESULT_OK, intent);
+        UserListActivity.this.finish();
     }
 }

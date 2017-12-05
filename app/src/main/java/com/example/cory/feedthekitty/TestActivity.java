@@ -39,6 +39,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class TestActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
@@ -207,6 +208,15 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
                 }
                 mAdapter.notifyDataSetChanged();
                 //Toast.makeText(this.getApplicationContext(), mListItems.size()+"", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if (requestCode == 888){
+            if (resultCode == RESULT_OK){
+                //TODO
+                HashSet<String> stuff = (HashSet<String>) data.getSerializableExtra("invited");
+                for (String i : stuff){
+                    Toast.makeText(getBaseContext(), ""+i, Toast.LENGTH_SHORT).show();
+                }
             }
         }
         else if (RESULT_OK == resultCode){
