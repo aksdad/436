@@ -47,7 +47,7 @@ public class TestActivity extends AppCompatActivity {
 
 
     EditText mEventName;
-    Button mAddExpense, mRemoveExpense, mSubmitEvent;
+    Button mAddExpense, mRemoveExpense, mSubmitEvent, mDatePicker, mTimePicker;
     RadioButton mPrivateEvent, mPublicEvent;
     ListView mExpenseList;
     ArrayList<String> mListItems = new ArrayList<String>();
@@ -61,7 +61,10 @@ public class TestActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mToolbar.setTitle("Create an Event");
+
         // get views
+        mDatePicker = (Button) findViewById(R.id.date_button);
+        mTimePicker = (Button) findViewById(R.id.time_button);
         mEventName = (EditText) findViewById(R.id.event_name);
         mAddExpense = (Button) findViewById(R.id.add_expense);
         mRemoveExpense = (Button) findViewById(R.id.remove_expenses);
