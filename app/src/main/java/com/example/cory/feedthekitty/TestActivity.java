@@ -1,8 +1,10 @@
 package com.example.cory.feedthekitty;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
@@ -34,10 +36,12 @@ import com.stripe.android.model.Token;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
     /************************************************
      *
@@ -47,6 +51,8 @@ public class TestActivity extends AppCompatActivity {
 
     EditText mEventName;
     Button mAddExpense, mRemoveExpense, mSubmitEvent, mDatePicker, mTimePicker, mInvite;
+    int myear, mmonth, mday, mhour, mminute;
+    long mTime;
     RadioButton mPrivateEvent, mPublicEvent;
     ListView mExpenseList;
     ArrayList<String> mListItems = new ArrayList<String>();
@@ -60,7 +66,7 @@ public class TestActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mToolbar.setTitle("Create an Event");
-
+        mTime = (new GregorianCalendar()).getTimeInMillis();
         // get views
         mDatePicker = (Button) findViewById(R.id.date_button);
         mTimePicker = (Button) findViewById(R.id.time_button);
@@ -113,12 +119,13 @@ public class TestActivity extends AppCompatActivity {
                 processEvent();
             }
         });
-        mExpenseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(getBaseContext(), "WORKS", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+//        mExpenseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                //Toast.makeText(getBaseContext(), "WORKS", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         mInvite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,7 +227,15 @@ public class TestActivity extends AppCompatActivity {
     }
 
     public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
+             {
+        private DatePickerDialog.OnDateSetListener mListener;
+        private Activity mActivity;
+        @Override
+        public void onAttach(Context activity){
+            super.onAttach(activity);
+            mActivity = (Activity) activity;
+            mListener = (DatePickerDialog.OnDateSetListener) mActivity;
+        }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -231,16 +246,36 @@ public class TestActivity extends AppCompatActivity {
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
+            return new DatePickerDialog(mActivity, mListener, year, month, day);
         }
 
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            // Do something with the date chosen by the user
-        }
+
+    }
+
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        myear = year;
+        mmonth = month;
+        mday = day;
+        showTimePickerDialog(mTimePicker);
+    }
+
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        mhour = hourOfDay;
+        mminute = minute;
+        Calendar c = new GregorianCalendar(myear + 1900, mmonth, mday, mhour, mminute);
+        mTime = c.getTimeInMillis();
     }
 
     public static class TimePickerFragment extends DialogFragment
-            implements TimePickerDialog.OnTimeSetListener {
+             {
+         private TimePickerDialog.OnTimeSetListener mListener;
+         private Activity mActivity;
+         @Override
+         public void onAttach(Context activity){
+             super.onAttach(activity);
+             mActivity = (Activity) activity;
+             mListener = (TimePickerDialog.OnTimeSetListener) mActivity;
+         }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -250,13 +285,11 @@ public class TestActivity extends AppCompatActivity {
             int minute = c.get(Calendar.MINUTE);
 
             // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute,
+            return new TimePickerDialog(mActivity, mListener, hour, minute,
                     DateFormat.is24HourFormat(getActivity()));
         }
 
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            // Do something with the time chosen by the user
-        }
+
     }
 
     public void showTimePickerDialog(View v) {
