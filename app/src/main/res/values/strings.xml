@@ -107,4 +107,7 @@
 
     <!-- User List -->
     <string name="user_invite">Invite</string>
+    <!-- Use saved credit card dialog strings -->
+    <string name="dialog_yes_button">Yes</string>
+    <string name="dialog_no_button">No</string>
 </resources>
