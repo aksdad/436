@@ -126,16 +126,8 @@ public class AddExpense extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Credit Card activity crashed", Toast.LENGTH_SHORT).show();
         }
         else {
-
-            Intent returnIntent = new Intent();
-            returnIntent.putExtra("name", mExpenseName.getText().toString());
-            returnIntent.putExtra("Cardholder",data.getStringExtra("Cardholder"));
-            returnIntent.putExtra("ExpMonth", data.getStringExtra("ExpMonth"));
-            returnIntent.putExtra("ExpYear", data.getStringExtra("ExpYear"));
-            returnIntent.putExtra("Cardnumber", data.getStringExtra("Cardnumber"));
-            returnIntent.putExtra("price", hold+"");
             Toast.makeText(getBaseContext(), "Successfully added credit card: " + data.getStringExtra("Cardnumber"), Toast.LENGTH_SHORT).show();
-            setResult(RESULT_OK,returnIntent);
+            setResult(RESULT_OK);
             this.finish();
         }
     }

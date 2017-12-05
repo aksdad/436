@@ -48,7 +48,7 @@ public class CreditCardActivity extends AppCompatActivity {
                     mappings.put("cardholder", retrieved.getName());
                     mappings.put("expmonth", retrieved.getExpMonth().toString());
                     mappings.put("expyear", retrieved.getExpYear().toString());
-                    mappings.put("cardunumber", retrieved.getNumber());
+                    mappings.put("cardnumber", retrieved.getNumber());
                     mappings.put("cvc", retrieved.getCVC());
                     childUpdates.put("/users/" + uid + "/cardinfo/", mappings);
                     mDatabase.updateChildren(childUpdates);
