@@ -69,7 +69,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
         mTime = (new GregorianCalendar()).getTimeInMillis();
         // get views
         mDatePicker = (Button) findViewById(R.id.date_button);
-        mTimePicker = (Button) findViewById(R.id.time_button);
+        //mTimePicker = (Button) findViewById(R.id.time_button);
         mEventName = (EditText) findViewById(R.id.event_name);
         mAddExpense = (Button) findViewById(R.id.add_expense);
         mRemoveExpense = (Button) findViewById(R.id.remove_expenses);
