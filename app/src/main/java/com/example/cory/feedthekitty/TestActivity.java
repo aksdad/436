@@ -84,6 +84,7 @@ public class TestActivity extends AppCompatActivity {
         mRemoveExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                removeExpense();
                 Toast.makeText(getBaseContext(), "Remove EXPENSE", Toast.LENGTH_SHORT).show();
             }
         });
@@ -146,14 +147,14 @@ public class TestActivity extends AppCompatActivity {
 
     private void addNewExpense(){
         Intent intent = new Intent(this.getApplicationContext(), AddExpense.class);
-
-//        TaskStackBuilder tsb = TaskStackBuilder.create(this);
-//        tsb.addParentStack(AddExpense.class);
-//        tsb.addNextIntent(intent);
-//        PendingIntent thingy = tsb.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-//        builder.setContentIntent(thingy);
         startActivityForResult(intent, 666);
+    }
+
+    private void removeExpense(){
+
+        Intent intent = new Intent(this.getApplicationContext(), RemoveExpense.class);
+        intent.putExtra("list", mListItems);
+        startActivityForResult(intent, 777);
     }
 
     @Override
@@ -169,16 +170,25 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (RESULT_OK == resultCode){
+        if (requestCode == 777){
+            if (resultCode == RESULT_OK){
+                ArrayList<String> hold = (ArrayList<String>) data.getSerializableExtra("removeList");
+                for (String item : hold){
+                    mListItems.remove(item);
+                }
+                mAdapter.notifyDataSetChanged();
+                //Toast.makeText(this.getApplicationContext(), mListItems.size()+"", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if (RESULT_OK == resultCode){
             if (requestCode == 0) {
                 PaymentData paymentData = PaymentData.getFromIntent(data);
                 CardInfo info = paymentData.getCardInfo();
                 UserAddress address = paymentData.getShippingAddress();
                 String rawToken = paymentData.getPaymentMethodToken().getToken();
                 Token stripeToken = Token.fromString(rawToken);
-
-
             }
+
             if (data == null){
                 Toast.makeText(getBaseContext(), "return intent null", Toast.LENGTH_SHORT).show();
             }

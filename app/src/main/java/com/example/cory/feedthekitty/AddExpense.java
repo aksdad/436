@@ -113,7 +113,7 @@ public class AddExpense extends AppCompatActivity {
 //                submitClick();
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("name", mExpenseName.getText().toString());
-                Toast.makeText(getBaseContext(), mExpenseName.getText(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), mExpenseName.getText(), Toast.LENGTH_SHORT).show();
                 returnIntent.putExtra("price", hold+"");
                 setResult(RESULT_OK,returnIntent);
                 AddExpense.this.finish();
