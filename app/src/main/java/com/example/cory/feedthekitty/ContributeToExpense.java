@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.util.Log;
 import android.widget.TextView;
@@ -28,8 +30,10 @@ public class ContributeToExpense extends AppCompatActivity {
 
     TextView seekBarValue;
     DatabaseReference mDatabase;
+    Button mSubmitButton;
     FirebaseAuth mAuth;
     String cardnumber;
+    int barVal = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public class ContributeToExpense extends AppCompatActivity {
 
         mTitleName = findViewById(R.id.contribute_header);
         mTitleName.setText(getIntent().getStringExtra("expense_name") );
-
+        mSubmitButton = findViewById(R.id.submit_expense_addition);
         SeekBar seekBar = (SeekBar)findViewById(R.id.seekBar);
         seekBar.setProgress(0);
         seekBar.incrementProgressBy(1);
@@ -45,12 +49,21 @@ public class ContributeToExpense extends AppCompatActivity {
         seekBarValue = (TextView)findViewById(R.id.contribution_counter);
         seekBarValue.setText("0");
 
+        mSubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Payment of $"+barVal+" received!", Toast.LENGTH_SHORT).show();
+                ContributeToExpense.this.finish();
+            }
+        });
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progress = progress - 1;
                 progress = progress + 1;
+                barVal = progress;
                 seekBarValue.setText(String.valueOf(progress));
             }
 
