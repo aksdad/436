@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
+    DatabaseReference mDatabase;
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
@@ -141,7 +143,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 //                getResources().getDisplayMetrics());
 //
 //        getListView().setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
-
         setupActionBar();
     }
 
@@ -304,12 +305,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             Intent i = new Intent(getActivity(), CreditCardActivity.class);
             startActivityForResult(i, Activity.RESULT_OK);
+            getActivity().finish();
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
         }
-
     }
 
     @Override
