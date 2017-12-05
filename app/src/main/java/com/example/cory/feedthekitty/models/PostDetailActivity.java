@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class PostDetailActivity extends AppCompatActivity {
 
-
+    int loaded = 0;
     TextView mTitleName, mOwnerName, mTime, mDate;
     DatabaseReference mEvent;
     ValueEventListener mPostListener;
@@ -80,19 +80,19 @@ public class PostDetailActivity extends AppCompatActivity {
                 // Get Post object and use the values to update the UI
                 Event event = dataSnapshot.getValue(Event.class);
                 // [START_EXCLUDE]
+
                 mTitleName.setText(event.name);
-                mOwnerName.setText("by: "+event.owner_name);
-                if(event.expenses != null){
-                    for (String key : event.expenses.keySet()){
-                        mListItems.add(key+": $"+event.expenses.get(key));
-                        mAdapter.notifyDataSetChanged();
+                mOwnerName.setText("by: " + event.owner_name);
+                if (loaded != 1) {
+                    loaded = 1;
+                    if (event.expenses != null) {
+                        for (String key : event.expenses.keySet()) {
+                            mListItems.add(key + ": $" + event.expenses.get(key));
+                            mAdapter.notifyDataSetChanged();
+                        }
                     }
                 }
-                //mDate = event.getTimestamp();
-
-                // [END_EXCLUDE]
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 return;
