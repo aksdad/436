@@ -135,6 +135,13 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
             }
         });
 
+        mDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(view);
+            }
+        });
+
         setSupportActionBar((Toolbar) findViewById(R.id.tool_bar));
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setDisplayHomeAsUpEnabled(true);
@@ -156,7 +163,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
 
 
 
-        Event event = new Event(key, "", ((EditText) findViewById(R.id.event_name)).getText().toString(), uid, visibility, null, expenses, owner_name);
+        Event event = new Event(key, "", ((EditText) findViewById(R.id.event_name)).getText().toString(), uid, visibility, null, expenses, owner_name, mTime);
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/events/" + key, event);
         childUpdates.put("/user-events/"+ uid + "/" + key, event);
@@ -264,6 +271,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
         mminute = minute;
         Calendar c = new GregorianCalendar(myear + 1900, mmonth, mday, mhour, mminute);
         mTime = c.getTimeInMillis();
+        Toast.makeText(this, String.valueOf(mTime), Toast.LENGTH_SHORT).show();
     }
 
     public static class TimePickerFragment extends DialogFragment

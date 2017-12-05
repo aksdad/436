@@ -19,7 +19,7 @@ public class Event {
     public String name;
     public String owner;
     public boolean visibility;
-    public HashMap<String, Object>	 timestamp;
+    public long timestamp;
     public List<User> members;
     public Map<String, Integer> expenses;
     public String owner_name;
@@ -28,21 +28,15 @@ public class Event {
 
     }
 
-    public Event(String eid, String desc, String name, String owner, boolean visibility, List<User> members, Map<String, Integer> expenses, String owner_name){
+    public Event(String eid, String desc, String name, String owner, boolean visibility, List<User> members, Map<String, Integer> expenses, String owner_name, long timestamp){
         this.eid = eid;
         this.desc = desc;
         this.name = name;
         this.owner = owner;
         this.owner_name = owner_name;
         this.visibility = visibility;
-        HashMap<String, Object> timestampNow = new HashMap<>();
-        timestampNow.put("timestamp", ServerValue.TIMESTAMP);
-        this.timestamp = timestampNow;
+        this.timestamp = timestamp;
         this.members = members;
         this.expenses = expenses;
-    }
-
-    public HashMap<String, Object> getTimestamp(){
-        return timestamp;
     }
 }
