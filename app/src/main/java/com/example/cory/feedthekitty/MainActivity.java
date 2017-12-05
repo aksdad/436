@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.cory.feedthekitty.fragment.MyEventsFragment;
+import com.example.cory.feedthekitty.fragment.OngoingEventsFragment;
+import com.example.cory.feedthekitty.fragment.PastEventsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class  MainActivity extends BaseActivity {
@@ -34,8 +36,8 @@ public class  MainActivity extends BaseActivity {
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[] {
                     new MyEventsFragment(),
-                    new MyEventsFragment(),
-                    new MyEventsFragment(),
+                    new OngoingEventsFragment(),
+                    new PastEventsFragment(),
             };
             private final String[] mFragmentNames = new String[] {
                     getString(R.string.header_my_events),

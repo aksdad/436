@@ -269,7 +269,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         mhour = hourOfDay;
         mminute = minute;
-        Calendar c = new GregorianCalendar(myear + 1900, mmonth, mday, mhour, mminute);
+        Calendar c = new GregorianCalendar(myear, mmonth, mday, mhour, mminute);
         mTime = c.getTimeInMillis();
         Toast.makeText(this, String.valueOf(mTime), Toast.LENGTH_SHORT).show();
     }
