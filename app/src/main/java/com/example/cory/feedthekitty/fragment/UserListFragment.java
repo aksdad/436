@@ -5,55 +5,51 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.cory.feedthekitty.EventViewHolder;
 import com.example.cory.feedthekitty.R;
+import com.example.cory.feedthekitty.UserViewHolder;
 import com.example.cory.feedthekitty.models.Event;
 import com.example.cory.feedthekitty.models.PostDetailActivity;
+import com.example.cory.feedthekitty.models.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.Transaction;
 
 /**
  * Created by Akshay on 12/4/2017.
  */
 
-public abstract class EventListFragment extends Fragment {
-    private static final String TAG = "EventListFragment";
+public class UserListFragment extends Fragment {
+    private static final String TAG = "UserListFragment";
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;
     // [END define_database_reference]
 
-    private FirebaseRecyclerAdapter<Event, EventViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<User, UserViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
-    public EventListFragment() {}
+    public UserListFragment() {}
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_all_events, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_all_users, container, false);
 
         // [START create_database_reference]
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END create_database_reference]
 
-        mRecycler = rootView.findViewById(R.id.event_list);
+        mRecycler = rootView.findViewById(R.id.user_list);
         mRecycler.setHasFixedSize(true);
 
         return rootView;
@@ -70,33 +66,30 @@ public abstract class EventListFragment extends Fragment {
         mRecycler.setLayoutManager(mManager);
 
         // Set up FirebaseRecyclerAdapter with the Query
-        Query eventsQuery = getQuery(mDatabase);
+        Query usersQuery = getQuery(mDatabase);
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Event>()
-                .setQuery(eventsQuery, Event.class)
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<User>()
+                .setQuery(usersQuery, User.class)
                 .build();
 
-        mAdapter = new FirebaseRecyclerAdapter<Event, EventViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<User, UserViewHolder>(options) {
 
             @Override
-            public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public UserViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new EventViewHolder(inflater.inflate(R.layout.item_event, viewGroup, false));
+                return new UserViewHolder(inflater.inflate(R.layout.item_user, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(EventViewHolder viewHolder, int position, final Event model) {
-                final DatabaseReference eventRef = getRef(position);
+            protected void onBindViewHolder(UserViewHolder viewHolder, int position, final User model) {
+                final DatabaseReference userRef = getRef(position);
 
                 // Set click listener for the whole post view
-                final String postKey = eventRef.getKey();
+                final String postKey = userRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch PostDetailActivity
-                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-                        intent.putExtra("PostKey", postKey);
-                        startActivityForResult(intent, 1738);
+
                     }
                 });
 
@@ -108,7 +101,7 @@ public abstract class EventListFragment extends Fragment {
 //                }
 
                 // Bind Post to ViewHolder, setting OnClickListener for the star button
-                viewHolder.bindToEvent(model);
+                viewHolder.bindToUser(model);
             }
         };
         mRecycler.setAdapter(mAdapter);
@@ -172,7 +165,9 @@ public abstract class EventListFragment extends Fragment {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-    public abstract Query getQuery(DatabaseReference databaseReference);
+    public Query getQuery(DatabaseReference databaseReference){
+        return databaseReference.child("users");
+    };
 
 
     //TODO

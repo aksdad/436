@@ -104,4 +104,7 @@
     <string name="header_my_events">My Events</string>
     <string name="header_ongoing_events">Ongoing</string>
     <string name="header_past_events">Past Events</string>
+
+    <!-- User List -->
+    <string name="user_invite">Invite</string>
 </resources>
