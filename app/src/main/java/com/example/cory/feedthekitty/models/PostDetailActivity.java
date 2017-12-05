@@ -79,10 +79,13 @@ public class PostDetailActivity extends AppCompatActivity {
                 // [START_EXCLUDE]
                 mTitleName.setText(event.name);
                 mOwnerName.setText("by: "+event.owner_name);
-                for (String key : event.expenses.keySet()){
-                    mListItems.add(key+": $"+event.expenses.get(key));
-                    mAdapter.notifyDataSetChanged();
+                if(event.expenses != null){
+                    for (String key : event.expenses.keySet()){
+                        mListItems.add(key+": $"+event.expenses.get(key));
+                        mAdapter.notifyDataSetChanged();
+                    }
                 }
+
 
                 // [END_EXCLUDE]
             }
