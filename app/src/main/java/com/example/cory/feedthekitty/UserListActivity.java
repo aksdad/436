@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cory.feedthekitty.models.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -16,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import java.util.HashSet;
 
 /**
  * Created by Akshay on 12/4/2017.
@@ -27,6 +30,7 @@ public class UserListActivity extends BaseActivity {
     // [START define_database_reference]
     private DatabaseReference mDatabase;
     // [END define_database_reference]
+    HashSet<String> store;
 
     private FirebaseRecyclerAdapter<User, UserViewHolder> mAdapter;
     private RecyclerView mRecycler;
@@ -48,6 +52,8 @@ public class UserListActivity extends BaseActivity {
 
         mRecycler = findViewById(R.id.user_list);
         mRecycler.setHasFixedSize(true);
+
+        store = new HashSet<>();
     }
 
     @Override
@@ -88,7 +94,13 @@ public class UserListActivity extends BaseActivity {
                     }
                 });
 
-                viewHolder.bindToUser(model);
+                viewHolder.bindToUser(model, new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        store.add(postKey);
+//                        Toast.makeText(UserListActivity.this, "Added " + postKey, Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         };
         mRecycler.setAdapter(mAdapter);

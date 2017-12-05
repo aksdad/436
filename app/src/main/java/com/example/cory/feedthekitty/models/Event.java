@@ -23,6 +23,7 @@ public class Event {
     public List<User> members;
     public Map<String, Integer> expenses;
     public String owner_name;
+    public int size;
 
     public Event(){
 
