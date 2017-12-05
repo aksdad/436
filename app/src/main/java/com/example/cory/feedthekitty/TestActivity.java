@@ -71,7 +71,7 @@ public class TestActivity extends AppCompatActivity {
         mPrivateEvent = (RadioButton) findViewById(R.id.private_event);
         mPublicEvent = (RadioButton) findViewById(R.id.public_event);
         mExpenseList = (ListView) findViewById(R.id.listView);
-        mInvite = (Button) findViewById(R.id.date_button);
+        mInvite = (Button) findViewById(R.id.invite_friends);
         mAdapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 mListItems);
@@ -124,7 +124,7 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TestActivity.this, UserListActivity.class);
-                startActivityForResult(intent, 666);
+                startActivityForResult(intent, 888);
             }
         });
 
