@@ -87,6 +87,8 @@
         <activity android:name=".CreditCardActivity" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".MainActivity" />
+
+        <activity android:name=".UserListActivity" />
         <activity android:name=".models.PostDetailActivity" />
         <activity android:name=".ContributeToExpense" />
         <activity android:name=".RemoveExpense"></activity>

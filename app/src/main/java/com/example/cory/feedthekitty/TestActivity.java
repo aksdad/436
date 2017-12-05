@@ -30,7 +30,6 @@ import com.google.android.gms.wallet.PaymentData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.stripe.android.model.Token;
 
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class TestActivity extends AppCompatActivity {
 
 
     EditText mEventName;
-    Button mAddExpense, mRemoveExpense, mSubmitEvent, mDatePicker, mTimePicker;
+    Button mAddExpense, mRemoveExpense, mSubmitEvent, mDatePicker, mTimePicker, mInvite;
     RadioButton mPrivateEvent, mPublicEvent;
     ListView mExpenseList;
     ArrayList<String> mListItems = new ArrayList<String>();
@@ -72,6 +71,7 @@ public class TestActivity extends AppCompatActivity {
         mPrivateEvent = (RadioButton) findViewById(R.id.private_event);
         mPublicEvent = (RadioButton) findViewById(R.id.public_event);
         mExpenseList = (ListView) findViewById(R.id.listView);
+        mInvite = (Button) findViewById(R.id.date_button);
         mAdapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 mListItems);
@@ -119,6 +119,15 @@ public class TestActivity extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(), "WORKS", Toast.LENGTH_SHORT).show();
             }
         });
+
+        mInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TestActivity.this, UserListActivity.class);
+                startActivityForResult(intent, 666);
+            }
+        });
+
         setSupportActionBar((Toolbar) findViewById(R.id.tool_bar));
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setDisplayHomeAsUpEnabled(true);
