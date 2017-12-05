@@ -77,7 +77,12 @@ public class ContributeToExpense extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
                 Map<String, Object> cardinfo = dataSnapshot.getValue(User.class).cardinfo;
-                ContributeToExpense.this.makeDialog((String) cardinfo.get("cardnumber"));
+                if (cardinfo != null) {
+                    ContributeToExpense.this.makeSavedCardDialog((String) cardinfo.get("cardnumber"));
+                }
+                else {
+                    ContributeToExpense.this.makeAddCardDialog();
+                }
             }
 
             @Override
@@ -98,7 +103,7 @@ public class ContributeToExpense extends AppCompatActivity {
         super.onStart();
     }
 
-    public void makeDialog(String cardnumber){
+    public void makeSavedCardDialog(String cardnumber){
         if (cardnumber.length() > 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Would you like to pay with your saved card? (XXXX-XXXX-XXXX-" + cardnumber.substring(cardnumber.length() - 4, cardnumber.length()) + ")")
@@ -129,5 +134,17 @@ public class ContributeToExpense extends AppCompatActivity {
 
             builder.create().show();
         }
+    }
+    public void makeAddCardDialog() {
+        AlertDialog.Builder addcard = new AlertDialog.Builder(ContributeToExpense.this);
+        addcard.setMessage("Please enter a credit card under Settings -> Add credit card before making a payment")
+                .setTitle("Error making payment");
+        addcard.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                return;
+            }
+        });
+        addcard.create().show();
     }
 }
