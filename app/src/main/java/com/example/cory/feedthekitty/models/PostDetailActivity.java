@@ -20,11 +20,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 
 public class PostDetailActivity extends AppCompatActivity {
 
     int loaded = 0;
+    boolean mOldEvent = false;
     TextView mTitleName, mOwnerName, mTime, mDate;
     DatabaseReference mEvent;
     ValueEventListener mPostListener;
@@ -54,15 +56,18 @@ public class PostDetailActivity extends AppCompatActivity {
         mExpenseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //launch individual activity to contribute to this expense
-                Intent intent = new Intent(PostDetailActivity.this, ContributeToExpense.class);
-                String expense = (String)adapterView.getItemAtPosition(i);
-                String[] hold = expense.split("\\s+");
-                hold[0] = hold[0].substring(0, hold[0].length()-1);
-                hold[1] = hold[1].substring(1, hold[1].length());
-                intent.putExtra("expense_name", hold[0]);
-                intent.putExtra("expense_price", hold[1]);
-                startActivity(intent);
+
+                if (mOldEvent == false) {
+                    //launch individual activity to contribute to this expense
+                    Intent intent = new Intent(PostDetailActivity.this, ContributeToExpense.class);
+                    String expense = (String) adapterView.getItemAtPosition(i);
+                    String[] hold = expense.split("\\s+");
+                    hold[0] = hold[0].substring(0, hold[0].length() - 1);
+                    hold[1] = hold[1].substring(1, hold[1].length());
+                    intent.putExtra("expense_name", hold[0]);
+                    intent.putExtra("expense_price", hold[1]);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -79,6 +84,9 @@ public class PostDetailActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
                 Event event = dataSnapshot.getValue(Event.class);
+                if (event.timestamp < (new GregorianCalendar()).getTimeInMillis()){
+                    mOldEvent = true;
+                }
                 // [START_EXCLUDE]
 
                 mTitleName.setText(event.name);

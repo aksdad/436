@@ -356,7 +356,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         Log.d(TAG, "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         Toast.makeText(LoginActivity.this, "Welcome back " + user.getDisplayName() + "!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, MainMenu.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
 //                        authSuccessful = true;
                     }else{
@@ -618,7 +618,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MainMenu.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 //finish();
             } else {
