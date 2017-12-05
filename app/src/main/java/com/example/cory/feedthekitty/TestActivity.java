@@ -53,6 +53,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
     EditText mEventName;
     Button mAddExpense, mRemoveExpense, mSubmitEvent, mDatePicker, mTimePicker, mInvite;
     int myear, mmonth, mday, mhour, mminute;
+    HashSet<String> users;
     long mTime;
     RadioButton mPrivateEvent, mPublicEvent;
     ListView mExpenseList;
@@ -65,6 +66,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        users = null;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mToolbar.setTitle("Create an Event");
@@ -166,9 +168,17 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
 
 
         Event event = new Event(key, "", ((EditText) findViewById(R.id.event_name)).getText().toString(), uid, visibility, null, expenses, owner_name, mTime);
+        event.size = 1;
         Map<String, Object> childUpdates = new HashMap<>();
+        if(users != null){
+            event.size += users.size();
+            for(String u : users){
+                childUpdates.put("/user-events/" + u + "/" + key, event);
+            }
+        }
         childUpdates.put("/events/" + key, event);
         childUpdates.put("/user-events/"+ uid + "/" + key, event);
+
 
         mDatabase.updateChildren(childUpdates);
 
@@ -218,6 +228,11 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
                 for (String i : stuff){
                     //Toast.makeText(getBaseContext(), ""+i, Toast.LENGTH_SHORT).show();
                 }
+
+                users = (HashSet<String>) data.getSerializableExtra("invited");
+//                for (String i : stuff){
+//                    Toast.makeText(getBaseContext(), ""+i, Toast.LENGTH_SHORT).show();
+//                }
             }
         }
         else if (RESULT_OK == resultCode){
