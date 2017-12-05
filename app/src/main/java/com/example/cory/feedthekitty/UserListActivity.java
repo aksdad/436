@@ -97,7 +97,9 @@ public class UserListActivity extends BaseActivity {
                 viewHolder.bindToUser(model, new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
+
                         store.add(postKey);
+                        Toast.makeText(UserListActivity.this, "Invite Sent!", Toast.LENGTH_SHORT).show();
                         viewHolder.inviteButton.setText("Invited");
                         viewHolder.inviteButton.setEnabled(false);
 //                        Toast.makeText(UserListActivity.this, "Added " + postKey, Toast.LENGTH_LONG).show();

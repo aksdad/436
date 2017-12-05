@@ -101,7 +101,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
             @Override
             public void onClick(View view) {
                 removeExpense();
-                Toast.makeText(getBaseContext(), "Remove EXPENSE", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "Remove EXPENSE", Toast.LENGTH_SHORT).show();
             }
         });
         mSubmitEvent.setOnClickListener(new View.OnClickListener() {
@@ -111,13 +111,13 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
                 int selected = rg.getCheckedRadioButtonId();
 
                 if ((RadioButton)findViewById(selected) == mPrivateEvent){
-                    Toast.makeText(getBaseContext(), mPrivateEvent.getText(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), mPrivateEvent.getText(), Toast.LENGTH_SHORT).show();
                 }
                 else if ((RadioButton)findViewById(selected) == mPublicEvent){
-                    Toast.makeText(getBaseContext(), mPublicEvent.getText(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), mPublicEvent.getText(), Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getBaseContext(), "Neither button clicked.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), "Neither button clicked.", Toast.LENGTH_SHORT).show();
                 }
                 //Toast.makeText(getBaseContext(), mEventName.getText(), Toast.LENGTH_SHORT).show();
                 processEvent();
@@ -161,7 +161,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
         int selected = rg.getCheckedRadioButtonId();
 
         if ((RadioButton)findViewById(selected) == mPrivateEvent){
-            Toast.makeText(getBaseContext(), mPrivateEvent.getText(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(), mPrivateEvent.getText(), Toast.LENGTH_SHORT).show();
             visibility = true;
         }
 
@@ -223,6 +223,11 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
         }
         else if (requestCode == 888){
             if (resultCode == RESULT_OK){
+                //TODO
+                HashSet<String> stuff = (HashSet<String>) data.getSerializableExtra("invited");
+                for (String i : stuff){
+                    //Toast.makeText(getBaseContext(), ""+i, Toast.LENGTH_SHORT).show();
+                }
 
                 users = (HashSet<String>) data.getSerializableExtra("invited");
 //                for (String i : stuff){
@@ -240,14 +245,14 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
             }
 
             if (data == null){
-                Toast.makeText(getBaseContext(), "return intent null", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "return intent null", Toast.LENGTH_SHORT).show();
             }
             else {
 
                 //get expense info from intent
                 String expenseName = data.getStringExtra("name");
                 expenses.put(expenseName, Integer.parseInt(data.getStringExtra("price")));
-                Toast.makeText(getBaseContext(), "return intent not null", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getBaseContext(), "return intent not null", Toast.LENGTH_SHORT).show();
                 mListItems.add(data.getStringExtra("name") + ":" +"\t$"+data.getStringExtra("price"));
                 mAdapter.notifyDataSetChanged();
             }
@@ -290,7 +295,7 @@ public class TestActivity extends AppCompatActivity implements TimePickerDialog.
         mminute = minute;
         Calendar c = new GregorianCalendar(myear, mmonth, mday, mhour, mminute);
         mTime = c.getTimeInMillis();
-        Toast.makeText(this, String.valueOf(mTime), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, String.valueOf(mTime), Toast.LENGTH_SHORT).show();
 
         //public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user

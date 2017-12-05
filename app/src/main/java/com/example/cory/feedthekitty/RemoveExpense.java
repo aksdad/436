@@ -67,7 +67,7 @@ public class RemoveExpense extends AppCompatActivity {
     private void returnToCreateEvent(){
 
         Intent returnIntent = new Intent();
-        Toast.makeText(this.getApplicationContext(), mListItems.size()+"", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this.getApplicationContext(), mListItems.size()+"", Toast.LENGTH_SHORT).show();
         returnIntent.putExtra("removeList", mListRemoved);
         setResult(RESULT_OK, returnIntent);
         RemoveExpense.this.finish();

@@ -40,7 +40,7 @@ public class CreditCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Card retrieved = mCardInputWidget.getCard();
-                Toast.makeText(getBaseContext(), "Aboutta test this card", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "Aboutta test this card", Toast.LENGTH_LONG).show();
                 if(retrieved != null){
                     String uid = mAuth.getCurrentUser().getUid();
                     Map<String, Object> childUpdates = new HashMap<String, Object>();
